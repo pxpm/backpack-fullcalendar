@@ -25,7 +25,7 @@ class CalendarEventRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
         return [
             'event_title' => 'required|min:2|max:255',
             'event_start' => 'required',
-            'event_end' => 'after:event_start'
+            'event_end' => 'nullable|after:event_start'
         ];
     }
 

@@ -11,32 +11,15 @@ class CalendarEvent extends Model implements \Pxpm\BackpackFullCalendar\Event
 {
     use CrudTrait;
 
-     /*
-	|--------------------------------------------------------------------------
-	| GLOBAL VARIABLES
-	|--------------------------------------------------------------------------
-	*/
-
-    //protected $table = 'calendar_events';
-    //protected $primaryKey = 'id';
-    // public $timestamps = false;
-    // protected $guarded = ['id'];
-     protected $fillable = ['event_title','event_description','event_start','event_end','calendar_id','calendar_event_type_id'];
-    // protected $hidden = [];
+    protected $table = 'calendar_events';
+    
+    protected $fillable = ['event_title','event_description','event_start','event_end','calendar_id','calendar_event_type_id'];
+    
     protected $dates = ['event_start', 'event_end'];
-
-    /*
-	|--------------------------------------------------------------------------
-	| FUNCTIONS
-	|--------------------------------------------------------------------------
-	*/
-
 
     protected static function boot()
     {
         parent::boot();
-
-        //static::addGlobalScope(new TenantQueryScope);
 
         static::creating(function ($model) {
 
@@ -46,11 +29,9 @@ class CalendarEvent extends Model implements \Pxpm\BackpackFullCalendar\Event
             if ($model->event_description === null) {
                 $model->event_description = EventType::where('id', '=', $model->calendar_event_type_id)->first()->description;
             }
-
-
-
         });
     }
+
     /**
      * Get the event's id number
      *
@@ -70,7 +51,7 @@ class CalendarEvent extends Model implements \Pxpm\BackpackFullCalendar\Event
         return $this->event_title;
     }
     /**
-     * Get color from event type
+     * Get color from event type color
      *
      * @return string
      */
@@ -98,10 +79,6 @@ class CalendarEvent extends Model implements \Pxpm\BackpackFullCalendar\Event
     {
         return $this->event_start;
     }
-
-    /*public function getEventType() {
-        return $this->EventType()->first();
-    }*/
 
     /**
      * Get the end time
@@ -131,21 +108,5 @@ class CalendarEvent extends Model implements \Pxpm\BackpackFullCalendar\Event
     public function EventType(){
         return $this->belongsTo('\Pxpm\BackpackFullCalendar\Models\CalendarEventType', 'calendar_event_type_id');
     }
-    /*
-	|--------------------------------------------------------------------------
-	| SCOPES
-	|--------------------------------------------------------------------------
-	*/
-
-    /*
-	|--------------------------------------------------------------------------
-	| ACCESORS
-	|--------------------------------------------------------------------------
-	*/
-
-    /*
-	|--------------------------------------------------------------------------
-	| MUTATORS
-	|--------------------------------------------------------------------------
-	*/
+   
 }

@@ -19,21 +19,18 @@ class CreateCalendarEventsMigration extends Migration
             $table->string('event_description', 5000);
             $table->datetime('event_start');
             $table->datetime('event_end')->nullable();
-            $table->integer('user_id')->unsigned();
             $table->string('event_color')->nullable();
             $table->boolean('is_all_day')->default(1);
             $table->boolean('allow_override')->default(0);
             $table->integer('calendar_id')->unsigned();
             $table->integer('calendar_event_type_id')->unsigned();
+            $table->boolean('is_recurring')->default(false);
+            $table->string('recurring_time_frame')->nullable(); //week, day, month, year, hour, minute
+            $table->string('recurring_frequency')->nullable(); //every, 
             $table->string('extras')->nullable();
 
 
             $table->timestamps();
-
-
-
-
-
         });
 
         Schema::create('calendar_event_types', function(Blueprint $table) {
@@ -42,7 +39,6 @@ class CreateCalendarEventsMigration extends Migration
             $table->string('description', 5000);
             $table->string('refers_to')->nullable();
             $table->string('default_event_type_color')->nullable();
-            $table->integer('user_id')->unsigned();
             $table->string('extras')->nullable();
             $table->timestamps();
 
@@ -62,6 +58,5 @@ class CreateCalendarEventsMigration extends Migration
     {
         Schema::drop('calendar_events');
         Schema::drop('calendar_event_types');
-        Schema::drop('calendar_event_event_types');
     }
 }

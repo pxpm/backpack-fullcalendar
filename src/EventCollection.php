@@ -5,7 +5,6 @@ use Illuminate\Support\Collection;
 
 class EventCollection
 {
-
     /**
      * @var Collection
      */

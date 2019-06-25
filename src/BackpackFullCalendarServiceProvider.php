@@ -8,7 +8,7 @@ use Pxpm\BackpackFullCalendar\Calendar;
 class BackpackFullCalendarServiceProvider extends ServiceProvider
 {
 
-    public $defer = true;
+    //public $defer = true;
     /**
      * Perform post-registration booting of services.
      *
@@ -23,19 +23,17 @@ class BackpackFullCalendarServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/resources/views', 'backpack-fullcalendar');
         // Regiter migrations
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
-       
+
+        $this->publishes([
+            __DIR__.'/resources/fullcalendar' => public_path('vendor/pxpm/backpack-fullcalendar'),
+        ], 'backpack-fullcalendar');
     }
 
-    /**
-     * Register any package services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-       
-
+    public function register() {
+      
+        $this->app->alias(Calendar::class, 'CalendarHelper');
     }
+
 
     /**
      * Get the services provided by the provider.

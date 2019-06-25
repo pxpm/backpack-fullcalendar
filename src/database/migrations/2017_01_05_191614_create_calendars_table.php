@@ -17,7 +17,7 @@ class CreateCalendarsTable extends Migration
             $table->increments('id');
             $table->string('name', 255);
             $table->integer('calendar_entity_id')->unsigned()->nullable();
-            $table->string('calendar_entity_namespace')->unsigned()->nullable();
+            $table->string('calendar_entity_namespace')->nullable();
             $table->string('extras')->nullable();
             $table->timestamps();
 

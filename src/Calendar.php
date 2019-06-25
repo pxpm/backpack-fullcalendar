@@ -97,7 +97,7 @@ class Calendar
     {
         $options = $this->getOptionsJson();
 
-        return $this->view->make('fullcalendar.calendarScript', [
+        return $this->view->make('backpack-fullcalendar::calendarScript', [
             'id' => $this->getId(),
             'options' => $options,
         ]);
