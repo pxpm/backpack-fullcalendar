@@ -1,0 +1,54 @@
+{
+    "name": "pxpm/backpack-fullcalendar",
+    "type": "package",
+    "description": "Add full calendar to your webapp.",
+    "keywords": [
+        "pxpm",
+        "ifthenpay"
+    ],
+    "homepage": "https://github.com/pxpm/backpack-fullcalendar",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pedro X.",
+            "email": "pxpm88@gmail.com",
+            "homepage": "https://github.com/pxpm",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "backpack/crud": "^3.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : ">=5.4.3",
+        "squizlabs/php_codesniffer": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pxpm\\BackpackFullCalendar\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pxpm\\BackpackFullCalendar\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
+        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Pxpm\\BackpackFullCalendar\\BackpackFullCalendarServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
