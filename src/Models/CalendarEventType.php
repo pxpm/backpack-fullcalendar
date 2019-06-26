@@ -42,7 +42,7 @@ class CalendarEventType extends Model
 	|--------------------------------------------------------------------------
 	*/
     public function CalendarEvents() {
-        return $this->hasMany('\App\Models\CalendarEvent');
+        return $this->hasMany('\Pxpm\BackpackFullCalendar\Models\CalendarEvent');
     }
 
 

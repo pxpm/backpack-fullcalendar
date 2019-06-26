@@ -11,7 +11,11 @@ class Calendar extends Model
 
     protected static function boot()
     {
-        parent::boot();
+		parent::boot();
+		
+		static::deleted(function($calendar) {
+			$calendar->events()->delete();
+		});
 
     }
      /*
