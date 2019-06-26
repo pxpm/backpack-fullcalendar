@@ -19,5 +19,5 @@ Route::group([
     CRUD::resource('calendarevent', 'CalendarEventCrudController');
     CRUD::resource('calendareventtype', 'CalendarEventTypeCrudController');
 
-    Route::get('calendar/view/{id?}', 'CalendarCrudController@showCalendar');
+    Route::get('calendar/view/{id?}', 'CalendarCrudController@showCalendar')->name('view-entity-calendar');
 });

@@ -28,7 +28,7 @@ class Calendar extends Model
     protected $primaryKey = 'id';
      public $timestamps = true;
     // protected $guarded = ['id'];
-    protected $fillable = ['name'];
+    protected $fillable = ['name','calendar_entity_id','calendar_entity_namespace'];
     // protected $hidden = [];
     // protected $dates = [];
 
