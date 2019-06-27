@@ -37,7 +37,7 @@ class CreateCalendarEventsMigration extends Migration
             $table->increments('id')->unsigned();
             $table->string('name', 255);
             $table->string('description', 5000);
-            $table->string('refers_to')->nullable();
+            $table->string('refers_to')->nullable(); 
             $table->string('default_event_type_color')->nullable();
             $table->string('extras')->nullable();
             $table->timestamps();

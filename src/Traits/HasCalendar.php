@@ -6,10 +6,32 @@ use Pxpm\BackpackFullCalendar\Models\Calendar as DBCalendar;
 
 trait HasCalendar {
 
+    /**
+     * Defines what field should be used to create the calendar relation, by default it's: 'id'
+     * 
+     * To override use protected $idForCalendar = 'your_id_field'
+     *
+     * @var integer
+     */
     protected static $calendarIdField;
+
+    /**
+     * The name you wish to give to calendar. 
+     * 
+     * To override use protected $calendarName = 'name_for_calendar' in your model
+     *
+     * @var string
+     */
 
     protected static $calendarNameForEntity;
 
+    
+    /**
+     * This boots the trait and add the listeners to create calendars on the fly
+     * Also it checks if user have overriden any of the properties for calendar.
+     *
+     * @return void
+     */
     public static function bootHasCalendar()  {
 
         static::created(function($item) {
@@ -25,11 +47,6 @@ trait HasCalendar {
 
 
     }
-
-   /* public function __construct() {
-        $this->calendarIdField = $this->getIdForCalendar();
-        $this->calendarNameForEntity = $this->getCalendarName();
-    }*/
 
     /**
      * Creates a new calendar on database for the entity.
@@ -79,6 +96,11 @@ trait HasCalendar {
         $this->crud->addButtonFromModelFunction('line', 'calendar_view_buttom', 'calendarViewButton', 'end');
     }
 
+    /**
+     * Adds the buttom to view calendar on entity list.
+     *
+     * @return void
+     */
     public function calendarViewButton() {
         $calendar = $this->getCalendar();
         if(is_null($calendar)) {

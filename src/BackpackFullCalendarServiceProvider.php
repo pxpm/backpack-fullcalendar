@@ -30,7 +30,10 @@ class BackpackFullCalendarServiceProvider extends ServiceProvider
     }
 
     public function register() {
-      
+        $this->commands([
+            Commands\CreateEntitiesCalendar::class,
+            
+        ]);
         $this->app->alias(Calendar::class, 'CalendarHelper');
     }
 
