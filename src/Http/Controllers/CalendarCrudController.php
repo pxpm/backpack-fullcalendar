@@ -45,8 +45,8 @@ class CalendarCrudController extends CrudController
         $calInfo = DBCalendar::where('id', '=', $id)->with('events.EventType')->first();
         if (!is_null($calInfo)) {
             $this->data['crud'] = $this->crud;
-
-            $listCalEvents = $calInfo->events;
+           // dd($calInfo);
+            $listCalEvents = $calInfo['events'];
             foreach ($listCalEvents as $eventCal) {
                 $calEvents[] = app('CalendarHelper')->event($eventCal->getTitle(), $eventCal->isAllDay(), $eventCal->getStart(), $eventCal->getEnd(), $eventCal->id, $eventCal->getEventOptions());
             }
@@ -54,4 +54,6 @@ class CalendarCrudController extends CrudController
             return view('backpack-fullcalendar::viewCalendar', $this->data);
         }
     }
+
+    
 }
