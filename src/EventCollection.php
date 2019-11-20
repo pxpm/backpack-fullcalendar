@@ -1,6 +1,8 @@
 <?php 
 namespace Pxpm\BackpackFullCalendar;
 
+//teste2
+
 use Illuminate\Support\Collection;
 
 class EventCollection
